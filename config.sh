@@ -2,7 +2,7 @@
 # Cofigurations for tmux-powerline.
 
 # You platform \in {linux,bsd,mac}.
-export PLATFORM="linux"
+export PLATFORM="mac"
 
 # Useage of patched font for symbols. true or false.
 export USE_PATCHED_FONT="true"

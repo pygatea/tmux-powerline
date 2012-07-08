@@ -28,7 +28,7 @@ mail_count+=(["script"]="${segments_path}/maildir_count.sh")
 mail_count+=(["foreground"]="white")
 mail_count+=(["background"]="red")
 mail_count+=(["separator"]="${separator_left_bold}")
-register_segment "mail_count"
+#register_segment "mail_count"
 
 declare -A now_playing
 if [ "$PLATFORM" == "linux" ]; then
@@ -64,7 +64,7 @@ fi
 battery+=(["foreground"]="colour127")
 battery+=(["background"]="colour137")
 battery+=(["separator"]="${separator_left_bold}")
-#register_segment "battery"
+register_segment "battery"
 
 declare -A weather
 weather+=(["script"]="${segments_path}/weather.sh")
