@@ -15,7 +15,7 @@ fi
 cd "$(dirname $0)"
 
 if [ ! -x "np_mpd" ]; then
-	make clean all &>/dev/null
+	make clean np_mpd &>/dev/null
 fi
 
 

@@ -13,6 +13,7 @@ The following segments exists for now:
 * Hostname.
 * tmux info.
 * CWD in pane
+* Current X keyboard layout.
 
 Check [segments/](https://github.com/erikw/tmux-powerline/tree/master/segments) for more undocumented segments and details.
 
@@ -46,13 +47,23 @@ Remaining battery.
 ![right-status, weather and battery](https://github.com/erikw/tmux-powerline/raw/master/img/right-status_weather_battery.png)
 
 # Requirements
+Requirements for the lib to work are:
 
 * Recent tmux version
 * `bash --version` >= 4.0
 * A patched font. Follow instructions at [Lokaltog/vim-powerline/fontpatcher](https://github.com/Lokaltog/vim-powerline/tree/develop/fontpatcher).
-* [libmpdclient](http://sourceforge.net/projects/musicpd/files/libmpdclient/) for MPD now playing.
+
+## Segment Requirements
+Requirements for some segments. You only need to fullfill the requirements for those segments you want to use.
+
+* WAN IP: curl
+* MPD now playing: [libmpdclient](http://sourceforge.net/projects/musicpd/files/libmpdclient/)
+* xkb_layout: X11, XKB
 
 ## OS X specific requirements
+
+**You still need to follow the first part of these instructions even if you are running zsh or something else as your default shell!**
+
 tmux-powerline uses associative arrays in bash, which were added in bash version 4.0. OS X Lion ships with an antiquated version of bash ( run
 `bash --version` to see your version). In order to use tmux-powerline, you need to install a newer version of bash, fortunately,
 [brew](http://mxcl.github.com/homebrew/) makes this very easy. If you don't have brew, [install it](https://github.com/mxcl/homebrew/wiki/installation).
@@ -62,15 +73,15 @@ Then follow these steps:
 $ brew install bash
 ```
 
-NOTE: If you're using something other than bash (or if you don't want this newer version of bash as your default shell) you shouldn't need to follow
-the rest of the instructions. If something seems broken, try following the last two steps and see if it helps.
+**If you're using something other than bash (or if you don't want this newer version of bash as your default shell) you should be done now**. If something
+seems broken, try following the last two steps and see if it helps:
 
 ```bash
 $ sudo bash -c "echo /usr/local/Cellar/bash/%INSTALLED_VERSION%/bin/bash >> /private/etc/shells"
 $ chsh -s /usr/local/Cellar/bash/%INSTALLED_VERSION%/bin/bash
 ```
 
-The first command installs bash with brew, the second registers the new shell with the system and the third changes to the new shell for your user.
+The first command installs bash through brew, the second registers the new shell with the system and the third changes to the new shell for your user.
 If you later upgrade bash through brew, don't forget to do the last two steps again with the new version number. After doing the above and restarting your
 terminal, running `echo $SHELL` should result in the following:
 
@@ -101,7 +112,7 @@ set-option -g status-left "#(~/path/to/tmux-powerline/status-left.sh)"
 set-option -g status-right "#(~/path/to/tmux-powerline/status-right.sh)"
 ```
 
-Set the maximum lengths to something that suits your configuration of segments and size of terminal (the maximum segments length will be handled better in the future). Don't forget to change the PLATFORM variable in `config.sh` to reflect your operating system of choice.
+Set the maximum lengths to something that suits your configuration of segments and size of terminal (the maximum segments length will be handled better in the future). Don't forget to change the PLATFORM variable in `config.sh` or your `~/.bashrc` to reflect your operating system of choice.
 
 Also I recommend you to use the [tmux-colors-solarized](https://github.com/seebi/tmux-colors-solarized) theme (as well as solarized for [everything else](http://ethanschoonover.com/solarized) :)):
 
@@ -116,7 +127,7 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$
 
 # Configuration
 
-Edit the two status scripts to suit you needs. A number of common segments are included that covers some general functions like time, date battery etc. The segments can be moved around and does not needs to be in the order (or same file) as they are now. It should be quite easy to add you own segments.
+Edit the two status scripts to suit you needs. A number of common segments are included that covers some general functions like time, date, battery etc. The segments can be moved around and does not needs to be in the order (or same file) as they are now. It should be quite easy to add you own segments.
 
 ```console
 $ $EDITOR ~/path/to/tmux-powerline/status-left.sh
@@ -137,4 +148,4 @@ register_segment "time"							# Registers the name of the array declared above.
 ```
 # Hacking
 
-This project can only gain positivly from contributions. Fork today and make your own enhancments share back! 
+This project can only gain positivly from contributions. Fork today and make your own enhancments and segments to share back! 
