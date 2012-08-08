@@ -42,8 +42,6 @@ wan_ip+=(["foreground"]="colour255")
 wan_ip+=(["background"]="colour24")
 wan_ip+=(["separator"]="${separator_right_thin}")
 wan_ip+=(["separator_fg"]="white")
-register_segment "wan_ip"
-
 declare -A vcs_branch
 vcs_branch+=(["script"]="${segments_path}/vcs_branch.sh")
 vcs_branch+=(["foreground"]="colour88")
